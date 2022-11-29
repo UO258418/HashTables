@@ -58,57 +58,6 @@ public class HashTableTest {
 	}
 	
 	@Test
-	public void testPrimeNumber() throws Exception
-	{
-		// Example
-		HashTable<Integer> a = new HashTable<Integer>(5, HashTable.LINEAR_PROBING, 1.0);
-		assertEquals(true, HashTable.isPrime(1));
-		assertEquals(true, HashTable.isPrime(2));
-		assertEquals(true, HashTable.isPrime(3));
-		assertEquals(false, HashTable.isPrime(4));
-		assertEquals(true, HashTable.isPrime(5));
-		assertEquals(false, HashTable.isPrime(6));
-		assertEquals(true, HashTable.isPrime(7));
-		assertEquals(false, HashTable.isPrime(8));
-		assertEquals(false, HashTable.isPrime(9));
-		assertEquals(false, HashTable.isPrime(10));
-		assertEquals(true, HashTable.isPrime(11));
-		assertEquals(false, HashTable.isPrime(12));
-		assertEquals(true, HashTable.isPrime(13));
-		assertEquals(false, HashTable.isPrime(14));
-		assertEquals(false, HashTable.isPrime(15));
-		assertEquals(false, HashTable.isPrime(16));
-		assertEquals(true, HashTable.isPrime(17));
-		
-		assertEquals(2, HashTable.getNextPrimeNumber(1));
-		assertEquals(3, HashTable.getNextPrimeNumber(2));
-		assertEquals(5, HashTable.getNextPrimeNumber(3));
-		assertEquals(5, HashTable.getNextPrimeNumber(4));
-		assertEquals(7, HashTable.getNextPrimeNumber(5));
-		assertEquals(7, HashTable.getNextPrimeNumber(6));
-		assertEquals(11, HashTable.getNextPrimeNumber(7));
-		assertEquals(11, HashTable.getNextPrimeNumber(8));
-		assertEquals(11, HashTable.getNextPrimeNumber(9));
-		assertEquals(11, HashTable.getNextPrimeNumber(10));
-		assertEquals(13, HashTable.getNextPrimeNumber(11));
-		
-		assertEquals(13, HashTable.getPrevPrimeNumber(15));
-		assertEquals(13, HashTable.getPrevPrimeNumber(14));
-		assertEquals(11, HashTable.getPrevPrimeNumber(13));
-		assertEquals(11, HashTable.getPrevPrimeNumber(12));
-		assertEquals(7, HashTable.getPrevPrimeNumber(11));
-		assertEquals(7, HashTable.getPrevPrimeNumber(10));
-		assertEquals(7, HashTable.getPrevPrimeNumber(9));
-		assertEquals(7, HashTable.getPrevPrimeNumber(8));
-		assertEquals(5, HashTable.getPrevPrimeNumber(7));
-		assertEquals(5, HashTable.getPrevPrimeNumber(6));
-		assertEquals(3, HashTable.getPrevPrimeNumber(5));
-		assertEquals(3, HashTable.getPrevPrimeNumber(4));
-		assertEquals(2, HashTable.getPrevPrimeNumber(3));
-	}
-	
-	
-	@Test
 	public void testAddInteger() throws Exception
 	{
 		// Example
@@ -152,7 +101,7 @@ public class HashTableTest {
 		assertEquals("[0] (1) = 15 - [1] (0) = null - [2] (1) = 3 - [3] (1) = 13 - [4] (1) = 4 - ", b.toString());
 		
 		
-		// Example
+		/*// Example
 		HashTable<Integer> c = new HashTable<Integer>(5, HashTable.DOUBLE_HASHING, 1.0);
 		c.add(4);
 		c.add(13);
@@ -170,10 +119,10 @@ public class HashTableTest {
 		c.add(15);
 		assertEquals(true, c.search(3));
 		assertEquals("[0] (1) = 15 - [1] (1) = 3 - [2] (2) = 24 - [3] (1) = 13 - [4] (1) = 4 - ", c.toString());
-				
+			*/
 	}
 	
-		@Test
+	@Test
 	public void testLF() throws Exception
 	{
 		// Example
@@ -204,8 +153,56 @@ public class HashTableTest {
 		
 		
 	}
-    
 
+	/*@Test
+	public void testPrimeNumber() throws Exception
+	{
+		// Example
+		HashTable<Integer> a = new HashTable<Integer>(5, HashTable.LINEAR_PROBING, 1.0);
+		assertEquals(true, HashTable.isPrime(1));
+		assertEquals(true, HashTable.isPrime(2));
+		assertEquals(true, HashTable.isPrime(3));
+		assertEquals(false, HashTable.isPrime(4));
+		assertEquals(true, HashTable.isPrime(5));
+		assertEquals(false, HashTable.isPrime(6));
+		assertEquals(true, HashTable.isPrime(7));
+		assertEquals(false, HashTable.isPrime(8));
+		assertEquals(false, HashTable.isPrime(9));
+		assertEquals(false, HashTable.isPrime(10));
+		assertEquals(true, HashTable.isPrime(11));
+		assertEquals(false, HashTable.isPrime(12));
+		assertEquals(true, HashTable.isPrime(13));
+		assertEquals(false, HashTable.isPrime(14));
+		assertEquals(false, HashTable.isPrime(15));
+		assertEquals(false, HashTable.isPrime(16));
+		assertEquals(true, HashTable.isPrime(17));
+
+		assertEquals(2, HashTable.getNextPrimeNumber(1));
+		assertEquals(3, HashTable.getNextPrimeNumber(2));
+		assertEquals(5, HashTable.getNextPrimeNumber(3));
+		assertEquals(5, HashTable.getNextPrimeNumber(4));
+		assertEquals(7, HashTable.getNextPrimeNumber(5));
+		assertEquals(7, HashTable.getNextPrimeNumber(6));
+		assertEquals(11, HashTable.getNextPrimeNumber(7));
+		assertEquals(11, HashTable.getNextPrimeNumber(8));
+		assertEquals(11, HashTable.getNextPrimeNumber(9));
+		assertEquals(11, HashTable.getNextPrimeNumber(10));
+		assertEquals(13, HashTable.getNextPrimeNumber(11));
+
+		assertEquals(13, HashTable.getPrevPrimeNumber(15));
+		assertEquals(13, HashTable.getPrevPrimeNumber(14));
+		assertEquals(11, HashTable.getPrevPrimeNumber(13));
+		assertEquals(11, HashTable.getPrevPrimeNumber(12));
+		assertEquals(7, HashTable.getPrevPrimeNumber(11));
+		assertEquals(7, HashTable.getPrevPrimeNumber(10));
+		assertEquals(7, HashTable.getPrevPrimeNumber(9));
+		assertEquals(7, HashTable.getPrevPrimeNumber(8));
+		assertEquals(5, HashTable.getPrevPrimeNumber(7));
+		assertEquals(5, HashTable.getPrevPrimeNumber(6));
+		assertEquals(3, HashTable.getPrevPrimeNumber(5));
+		assertEquals(3, HashTable.getPrevPrimeNumber(4));
+		assertEquals(2, HashTable.getPrevPrimeNumber(3));
+	}*/
     
    
 
