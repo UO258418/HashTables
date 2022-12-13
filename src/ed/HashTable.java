@@ -5,9 +5,11 @@ import java.util.List;
 
 public class HashTable<T> {
 
-    private int B;
+    private int B; // length of the array
+    private int R; // previous prime number
     private double maxLoadFactor;
-    public final static int LINEAR_PROBING = 0, QUADRATIC_PROBING = 1;
+    private double minLoadFactor;
+    public final static int LINEAR_PROBING = 0, QUADRATIC_PROBING = 1, DOUBLE_HASHING = 2;
     private int probing;
     private List<HashNode> associativeArray;
     private int numOfElements = 0;
@@ -19,6 +21,11 @@ public class HashTable<T> {
         this.associativeArray = new ArrayList<>(B);
         init();
     }
+    public HashTable(int B, int probing, double maxLoadFactor, double minLoadFactor) {
+        // next prime of B * 2
+        this(B, probing, maxLoadFactor);
+        this.minLoadFactor = minLoadFactor;
+    }
 
     private void init() {
         for(int i = 0; i < B; i++) {
@@ -27,6 +34,9 @@ public class HashTable<T> {
             node.setValue(null);
             associativeArray.add(node);
         }
+
+        R = getPrevPrimeNumber(B);
+        System.out.println(R);
     }
 
     public void add(T element) {
@@ -38,6 +48,21 @@ public class HashTable<T> {
         node.setValue(element);
         node.setStatus(NodeStatus.VALID);
         numOfElements++;
+    }
+
+    public static int getPrevPrimeNumber(int num) {
+        for(int i = num - 1; i > 1; i--) {
+            if(isPrime(i))
+                return i;
+        }
+        return 1;
+    }
+
+    public static int getNextPrimeNumber(int num) {
+        do {
+            num += 1;
+        } while(!isPrime(num));
+        return num;
     }
 
     public boolean search(T element) {
@@ -59,12 +84,13 @@ public class HashTable<T> {
         do {
             index = f(element, attempt++);
             node = associativeArray.get(index);
-            if(node.getValue().equals(element))
-                if(node.getStatus() == NodeStatus.VALID) {
-                    node.setStatus(NodeStatus.DELETED);
-                    numOfElements--;
-                    break;
-                }
+            if(node.getValue() != null)
+                if(node.getValue().equals(element))
+                    if(node.getStatus() == NodeStatus.VALID) {
+                        node.setStatus(NodeStatus.DELETED);
+                        numOfElements--;
+                        break;
+                    }
         } while(associativeArray.get(index).getStatus() != NodeStatus.EMPTY);
     }
 
@@ -72,12 +98,16 @@ public class HashTable<T> {
         int hashCode = Math.abs(element.hashCode());
 
         switch (probing) {
-            case 0:
+            case LINEAR_PROBING:
                 hashCode += attempt;
                 break;
 
-            case 1:
+            case QUADRATIC_PROBING:
                 hashCode += attempt * attempt;
+                break;
+
+            case DOUBLE_HASHING:
+                hashCode += attempt * (R - hashCode % R);
                 break;
         }
 
@@ -86,6 +116,24 @@ public class HashTable<T> {
 
     public double getLF() {
         return numOfElements / (double)B;
+    }
+
+    private void resize() {
+        if(getLF() > maxLoadFactor) {
+
+        }
+    }
+
+    public static boolean isPrime(int num) {
+        if (num < 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public String toString() {

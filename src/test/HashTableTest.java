@@ -101,7 +101,7 @@ public class HashTableTest {
 		assertEquals("[0] (1) = 15 - [1] (0) = null - [2] (1) = 3 - [3] (1) = 13 - [4] (1) = 4 - ", b.toString());
 		
 		
-		/*// Example
+		// Example
 		HashTable<Integer> c = new HashTable<Integer>(5, HashTable.DOUBLE_HASHING, 1.0);
 		c.add(4);
 		c.add(13);
@@ -119,7 +119,6 @@ public class HashTableTest {
 		c.add(15);
 		assertEquals(true, c.search(3));
 		assertEquals("[0] (1) = 15 - [1] (1) = 3 - [2] (2) = 24 - [3] (1) = 13 - [4] (1) = 4 - ", c.toString());
-			*/
 	}
 	
 	@Test
@@ -138,9 +137,7 @@ public class HashTableTest {
 		
 		a.remove(24);
 		
-		
-		assertEquals (0.6, a.getLF(), 0.1);		
-		
+		assertEquals (0.6, a.getLF(), 0.1);
 		
 		a.remove(24);
 		
@@ -149,12 +146,10 @@ public class HashTableTest {
 		
 		a.remove(3);
 		
-		assertEquals (0.4, a.getLF(), 0.1);		
-		
-		
+		assertEquals (0.4, a.getLF(), 0.1);
 	}
 
-	/*@Test
+	@Test
 	public void testPrimeNumber() throws Exception
 	{
 		// Example
@@ -202,8 +197,6 @@ public class HashTableTest {
 		assertEquals(3, HashTable.getPrevPrimeNumber(5));
 		assertEquals(3, HashTable.getPrevPrimeNumber(4));
 		assertEquals(2, HashTable.getPrevPrimeNumber(3));
-	}*/
-    
-   
+	}
 
 }
