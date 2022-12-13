@@ -16,10 +16,11 @@ public class HashTable<T> {
 
     public HashTable(int B, int probing, double maxLoadFactor) {
         this.B = B;
+        this.R = getPrevPrimeNumber(B);
         this.probing = probing;
         this.maxLoadFactor = maxLoadFactor;
         this.associativeArray = new ArrayList<>(B);
-        init();
+        init(associativeArray);
     }
     public HashTable(int B, int probing, double maxLoadFactor, double minLoadFactor) {
         // next prime of B * 2
@@ -27,16 +28,13 @@ public class HashTable<T> {
         this.minLoadFactor = minLoadFactor;
     }
 
-    private void init() {
+    private void init(List<HashNode> array) {
         for(int i = 0; i < B; i++) {
             HashNode<T> node = new HashNode<>();
             node.setStatus(NodeStatus.EMPTY);
             node.setValue(null);
             associativeArray.add(node);
         }
-
-        R = getPrevPrimeNumber(B);
-        System.out.println(R);
     }
 
     public void add(T element) {
@@ -48,6 +46,8 @@ public class HashTable<T> {
         node.setValue(element);
         node.setStatus(NodeStatus.VALID);
         numOfElements++;
+        if(getLF() > maxLoadFactor)
+            dynamicResize(getNextPrimeNumber(B * 2));
     }
 
     public static int getPrevPrimeNumber(int num) {
@@ -89,6 +89,8 @@ public class HashTable<T> {
                     if(node.getStatus() == NodeStatus.VALID) {
                         node.setStatus(NodeStatus.DELETED);
                         numOfElements--;
+                        if(getLF() < minLoadFactor)
+                            dynamicResize(R);
                         break;
                     }
         } while(associativeArray.get(index).getStatus() != NodeStatus.EMPTY);
@@ -118,10 +120,14 @@ public class HashTable<T> {
         return numOfElements / (double)B;
     }
 
-    private void resize() {
-        if(getLF() > maxLoadFactor) {
-
-        }
+    private void dynamicResize(int newSize) {
+       HashTable<T> aux = new HashTable<>(newSize, probing, maxLoadFactor);
+       for(HashNode<T> node : associativeArray) {
+           if(node.getStatus() == NodeStatus.VALID)
+               aux.add(node.getValue());
+       }
+       associativeArray = aux.associativeArray;
+       B = aux.B;
     }
 
     public static boolean isPrime(int num) {
