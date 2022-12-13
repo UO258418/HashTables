@@ -128,6 +128,7 @@ public class HashTable<T> {
        }
        associativeArray = aux.associativeArray;
        B = aux.B;
+       R = aux.R;
     }
 
     public static boolean isPrime(int num) {
