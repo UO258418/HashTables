@@ -1,4 +1,4 @@
-package test;
+/*package test;
 
 import ed.HashTable;
 import org.junit.jupiter.api.Test;
@@ -81,4 +81,4 @@ public class L12HashTableTest {
 		assertEquals("[0] (0) = null - [1] (0) = null - [2] (1) = 24 - [3] (1) = 13 - [4] (1) = 4 - [5] (1) = 3 - [6] (0) = null - [7] (0) = null - [8] (0) = null - [9] (0) = null - [10] (0) = null - ", a.toString());
 	}
 
-}
+}*/

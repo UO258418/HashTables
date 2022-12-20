@@ -13,6 +13,7 @@ public class HashTable<T> {
     private int probing;
     private List<HashNode> associativeArray;
     private int numOfElements = 0;
+    private final static double MAX_COLLISION_RATE = 0.1;
 
     public HashTable(int B, int probing, double maxLoadFactor) {
         this.B = B;
@@ -37,10 +38,37 @@ public class HashTable<T> {
         }
     }
 
-    public void add(T element) {
+    public int getB() {
+        return B;
+    }
+
+    public void setB(int b) {
+        B = b;
+    }
+
+    /*public void add(T element) {
         int index, attempt = 0;
         HashNode<T> node;
         do {
+            index = f(element, attempt++);
+        } while((node = associativeArray.get(index)).getStatus() == NodeStatus.VALID);
+        node.setValue(element);
+        node.setStatus(NodeStatus.VALID);
+        numOfElements++;
+        if(getLF() > maxLoadFactor)
+            dynamicResize(getNextPrimeNumber(B * 2));
+    }*/
+
+    public void add(T element) {
+        int index, attempt = 0;
+        HashNode<T> node;
+        int maxAttempts = (int)Math.ceil(MAX_COLLISION_RATE * B);
+        do {
+            if(attempt >= maxAttempts) {
+                dynamicResize(getNextPrimeNumber(B * 2));
+                add(element);
+                return;
+            }
             index = f(element, attempt++);
         } while((node = associativeArray.get(index)).getStatus() == NodeStatus.VALID);
         node.setValue(element);

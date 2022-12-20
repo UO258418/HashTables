@@ -1,4 +1,4 @@
-package test;
+/*package test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ed.HashTable;
@@ -199,4 +199,4 @@ public class HashTableTest {
 		assertEquals(2, HashTable.getPrevPrimeNumber(3));
 	}
 
-}
+}*/
